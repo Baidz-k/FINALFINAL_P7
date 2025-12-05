@@ -113,10 +113,98 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+
+body.death-layout {
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+  border: 3px solid #fff;
+  position: relative;
+  /* overflow: hidden;  <-- REMOVE THIS */
+  font-family: var(--font-deathnote);
+}
+
+
+.corner {
+  position: absolute;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.top-left { top: 0; left: 0; }
+.top-right { top: 0; right: 0; }
+.bottom-left { bottom: 0; left: 0; }
+.bottom-right { bottom: 0; right: 0; }
+
+
+
+.heart-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0.12;
+  z-index: 1;
+}
+
+.heart-img {
+  object-fit: contain;
+  filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.5));
+}
+
+
+
+
+:root {
+  --font-deathnote: "DeathNote", "Times New Roman", serif;
+}
+
+.death-title {
+  font-family: var(--font-deathnote);
+  letter-spacing: 3px;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+
+
+.death-btn {
+  padding: 12px 32px;
+  border: 2px solid #fff;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: 0.2s ease;
+  background: transparent;
+}
+
+.death-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+
+
+.inner-box {
+  border: 2px solid #fff;
+  padding: 36px; /* more breathing room */
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  
+}
+
+.fade-in {
+  animation: fadeIn 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
