@@ -26,7 +26,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${API_BASE}/register`, {
+      const res = await fetch(`${API_BASE}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -43,7 +43,6 @@ export default function RegisterPage() {
         return;
       }
 
-      // Cinematic delay before redirect
       setTimeout(() => router.push("/login"), 400);
 
     } catch {
@@ -54,7 +53,6 @@ export default function RegisterPage() {
 
   return (
     <div className="content-wrapper flex flex-col items-center justify-center py-20 fade-in">
-
 
       <Link href="/">
         <div className="mb-12 opacity-0 animate-[fadeIn_1.4s_ease_forwards] cursor-pointer">
@@ -69,7 +67,6 @@ export default function RegisterPage() {
         </div>
       </Link>
 
-      {/* Ritual Box */}
       <div className="inner-box w-full max-w-md text-center px-10 py-14 opacity-0 animate-[fadeIn_1.8s_ease_forwards] hover:shadow-[0_0_25px_rgba(255,0,0,0.25)] transition-shadow duration-500">
 
         <h1 className="death-title text-4xl mb-8 tracking-wide">
@@ -78,13 +75,12 @@ export default function RegisterPage() {
 
         <p className="text-white/80 text-sm mb-10 leading-relaxed">
           Your name will be inscribed into the Ledger.
-          <br></br>
+          <br />
           Proceed only if you accept the consequences.
         </p>
 
         <form onSubmit={handleRegister} className="space-y-6">
 
-          {/* Username */}
           <Input
             placeholder="Username"
             value={username}
@@ -93,7 +89,6 @@ export default function RegisterPage() {
             required
           />
 
-          {/* Password with Show/Hide */}
           <div className="relative">
             <Input
               type={showPassword ? "text" : "password"}
@@ -113,14 +108,12 @@ export default function RegisterPage() {
             </button>
           </div>
 
-          {/* Error */}
           {error && (
             <p className="text-red-500 text-sm text-center animate-pulse">
               {error}
             </p>
           )}
 
-          {/* Submit */}
           <Button
             className="w-full bg-white text-black hover:bg-red-700 hover:text-white transition-all font-semibold py-2 rounded-none border border-white opacity-0 animate-[fadeIn_2.2s_ease_forwards]"
             type="submit"
@@ -130,7 +123,6 @@ export default function RegisterPage() {
           </Button>
         </form>
 
-        {/* Back Link */}
         <button
           onClick={() => router.push("/login")}
           className="mt-8 text-sm text-white/70 hover:text-red-500 transition-colors opacity-0 animate-[fadeIn_2.4s_ease_forwards]"

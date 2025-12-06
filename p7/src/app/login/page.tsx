@@ -25,7 +25,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${API_BASE}/login`, {
+      const res = await fetch(`${API_BASE}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -41,7 +41,6 @@ export default function LoginPage() {
 
       saveToken(data.accessToken);
 
-      // Cinematic delay
       setTimeout(() => router.push("/dashboard"), 350);
 
     } catch {
@@ -53,7 +52,6 @@ export default function LoginPage() {
   return (
     <div className="content-wrapper flex flex-col items-center justify-center py-20 fade-in">
 
-      {/* Floating Logo */}
       <Link
         href="/"
         className="mb-12 opacity-0 animate-[fadeIn_1.4s_ease_forwards] hover:scale-105 active:scale-95 transition-transform duration-300"
@@ -68,20 +66,16 @@ export default function LoginPage() {
         />
       </Link>
 
-      {/* Ritual Login Box */}
       <div className="inner-box w-full max-w-md text-center px-10 py-14 opacity-0 animate-[fadeIn_1.8s_ease_forwards] hover:shadow-[0_0_25px_rgba(255,0,0,0.25)] transition-shadow duration-500">
 
         <h1 className="death-title text-4xl mb-8 tracking-wide">Login</h1>
 
         <p className="text-white/80 text-sm mb-10 leading-relaxed">
           Re-enter the ledger.
-          <br></br>
           Only those who remember their credentials may proceed.
         </p>
 
         <form onSubmit={handleLogin} className="space-y-6">
-
-          {/* Username */}
           <Input
             placeholder="Username"
             value={username}
@@ -90,7 +84,6 @@ export default function LoginPage() {
             required
           />
 
-          {/* Password with Show/Hide */}
           <div className="relative">
             <Input
               type={showPassword ? "text" : "password"}
@@ -110,14 +103,12 @@ export default function LoginPage() {
             </button>
           </div>
 
-          {/* Error */}
           {error && (
             <p className="text-red-500 text-sm text-center animate-pulse">
               {error}
             </p>
           )}
 
-          {/* Submit */}
           <Button
             className="w-full bg-white text-black hover:bg-red-700 hover:text-white transition-all font-semibold py-2 rounded-none border border-white opacity-0 animate-[fadeIn_2.2s_ease_forwards]"
             type="submit"
@@ -127,7 +118,6 @@ export default function LoginPage() {
           </Button>
         </form>
 
-        {/* Register Link */}
         <button
           onClick={() => router.push("/register")}
           className="mt-8 text-sm text-white/70 hover:text-red-500 transition-colors opacity-0 animate-[fadeIn_2.4s_ease_forwards]"
